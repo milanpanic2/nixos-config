@@ -110,7 +110,7 @@
         "python.analysis.diagnosticSeverityOverrides" = {
           "reportOptionalMemberAccess"                = "warning";
         };
-        "python.languageServer"                      = "Default";
+        "python.languageServer"                      = "None";
         "python.analysis.autoImportCompletions"       = true;
         "python.analysis.diagnosticMode"              = "workspace";
         "python.analysis.autoSearchPaths"             = true;

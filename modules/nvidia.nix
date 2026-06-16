@@ -10,6 +10,11 @@
     nvidiaSettings = false;
   };
 
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+    device-name-strategy = "uuid";
+  };
+
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   environment.systemPackages = with pkgs; [

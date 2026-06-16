@@ -16,10 +16,21 @@
       "--write-kubeconfig-mode=644"
       "--write-kubeconfig-group=k3s"
       "--prefer-bundled-bin"
-      "--data-dir /home/mpanic/cluster/k3s"
       "--tls-san 192.168.8.208"
     ];
+    containerdConfigTemplate = ''
+      {{ template "base" . }}
+      [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia]
+        runtime_type = "io.containerd.runc.v2"
+      [plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.nvidia.options]
+        BinaryName = "${pkgs.nvidia-container-toolkit.tools}/bin/nvidia-container-runtime.cdi"
+    '';
   };
+
+  # ensure containerd config dir exists before tmpfiles creates the template symlink
+  systemd.tmpfiles.rules = [
+    "d /var/lib/rancher/k3s/agent/etc/containerd 0755 root root -"
+  ];
 
   users.groups.k3s = {};
 

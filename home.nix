@@ -110,13 +110,24 @@
         "python.analysis.diagnosticSeverityOverrides" = {
           "reportOptionalMemberAccess"                = "warning";
         };
-        "python.languageServer"                      = "None";
+        "python.languageServer"                      = "Pyright";
         "python.analysis.autoImportCompletions"       = true;
         "python.analysis.diagnosticMode"              = "workspace";
         "python.analysis.autoSearchPaths"             = true;
         "python.analysis.useLibraryCodeForTypes"      = true;
+        "python.analysis.inlayHints.callArgumentNames" = "all";
+        "python.analysis.inlayHints.functionReturnTypes" = true;
+        "python.analysis.inlayHints.variableTypes"   = true;
+        "python.analysis.inlayHints.pytestParameters" = true;
         "editor.formatOnPaste"                       = true;
         "editor.formatOnType"                        = true;
+        "editor.formatOnSave"                        = true;
+        "editor.inlayHints.enabled"                  = "onUnlessPressed";
+        "editor.stickyScroll.enabled"                = true;
+        "editor.bracketPairColorization.enabled"     = true;
+        "editor.guides.bracketPairs"                 = "active";
+        "editor.parameterHints.enabled"              = true;
+        "editor.parameterHints.cycle"                = true;
         "editor.suggest.localityBonus"               = true;
         "editor.suggest.showStatusBar"               = true;
         "editor.suggest.preview"                     = true;
@@ -129,7 +140,14 @@
         "workbench.editor.limit.perEditorGroup"      = true;
         "workbench.editor.limit.excludeDirty"        = true;
         "yaml.schemas" = {
-          "kubernetes"                               = "manifests/**/*.yaml";
+          "kubernetes"                               = [
+            "manifests/namespaces/**/*.yaml"
+            "manifests/argocd/**/*.yaml"
+            "manifests/cert-manager/**/*.yaml"
+            "manifests/metallb/**/*.yaml"
+            "manifests/monitoring/**/*.yaml"
+            "manifests/nvidia-device-plugin/**/*.yaml"
+          ];
         };
         "[yaml]" = {
           "editor.defaultFormatter"                  = "redhat.vscode-yaml";

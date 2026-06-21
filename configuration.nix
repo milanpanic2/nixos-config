@@ -19,6 +19,7 @@
     ./modules/k3s.nix                                                                                                
     ./modules/openssh.nix
     ./modules/pihole.nix
+    ./modules/ollama.nix
   ];
 
   # Bootloader.

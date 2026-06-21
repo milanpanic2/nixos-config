@@ -1,9 +1,8 @@
-
 { config, pkgs, ... }:
 
 {
 
- # Some programs need SUID wrappers, can be configured further or are
+  # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
@@ -12,14 +11,13 @@
   # };
 
   imports = [
-    ./hardware-configuration.nix                                                                                      
-    ./modules/nvidia.nix                                                                                             
+    ./hardware-configuration.nix
+    ./modules/nvidia.nix
     ./modules/sunshine.nix
     ./modules/desktop.nix
-    ./modules/k3s.nix                                                                                                
+    ./modules/k3s.nix
     ./modules/openssh.nix
     ./modules/pihole.nix
-    ./modules/ollama.nix
   ];
 
   # Bootloader.
@@ -32,16 +30,24 @@
 
   hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [ linux-firmware ];
-  
+
   nixpkgs.config.allowUnfree = true;
 
   users.users.mpanic = {
     isNormalUser = true;
     description = "Milan Panic";
-    extraGroups = [ "networkmanager" "wheel" "input" "video" "render" "uinput" "k3s" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "input"
+      "video"
+      "render"
+      "uinput"
+      "k3s"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -58,13 +64,15 @@
     claude-code
 
     # LSP / tooling (needed by VSCodium extensions)
-    nil             # nix-ide LSP
-    nixfmt          # nix formatter
-    shellcheck      # shell linting
-    clang-tools     # clangd LSP
-    python3         # needed by ms-python extension to validate interpreters
-    ruff            # Python linter/formatter (used by VSCodium extension)
-    pyright         # Python type checker (used by VSCodium extension)
+    nil # nix-ide LSP
+    nixfmt # nix formatter
+    shellcheck # shell linting
+    clang-tools # clangd LSP
+    python3 # needed by ms-python extension to validate interpreters
+    ruff # Python linter/formatter (used by VSCodium extension)
+    pyright # Python type checker (used by VSCodium extension)
+
+    (llama-cpp.override { cudaSupport = true; })
   ];
 
   programs.git = {

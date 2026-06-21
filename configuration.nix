@@ -53,7 +53,7 @@
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [ 8079 ];
+  networking.firewall.allowedTCPPorts = [ 8079 8090 ];
 
   environment.systemPackages = with pkgs; [
     wget
